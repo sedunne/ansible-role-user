@@ -1,0 +1,17 @@
+---
+- name: creating sudoers file
+  template:
+    src: sudoers_template.j2
+    dest: /etc/sudoers.d/{{ user_username }}
+    owner: root
+    group: root
+    mode: 0400
+    follow: yes
+    validate: 'visudo -cf %s'
+  when: user_sudo_allowed == True
+
+- name: removing sudoers file
+  file:
+    path: /etc/sudoers.d/{{ user_username }}
+    state: absent
+  when: user_sudo_allowed == False

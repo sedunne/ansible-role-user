@@ -1,0 +1,11 @@
+---
+user_state: present
+user_shell: '/bin/bash'
+user_createhome: True
+user_issystem: False
+user_removefiles: False
+user_groups: []
+user_keys_manage: False
+user_keys_list: []
+user_sudo_norequiretty: False
+user_sudo_nopasswd: False

@@ -1,0 +1,22 @@
+---
+- name: ensuring given groups exist
+  group:
+    name: "{{ item.name }}"
+    gid: "{{ item.gid | default(omit) }}"
+    system: "{{ item.system | default(omit) }}"
+    state: present
+  with_items: user_groups_create
+  when: user_groups_create is defined
+
+- name: setting users groups
+  user:
+    name: "{{ user_username }}"
+    append: "{{ user_groups_append | default(omit) }}"
+    groups: '{{ user_groups | join(",") }}'
+
+- name: removing provided groups
+  group:
+    name: "{{ item }}"
+    state: absent
+  with_items: user_groups_remove
+  when: user_groups_remove is defined

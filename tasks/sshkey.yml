@@ -1,0 +1,6 @@
+---
+- name: adding public keys
+  authorized_key:
+    user: "{{ user_username }}"
+    key: "{{ item }}"
+  with_items: "{{ user_keys_list }}"

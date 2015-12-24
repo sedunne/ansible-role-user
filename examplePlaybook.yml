@@ -1,0 +1,10 @@
+---
+- hosts: all
+  roles:
+  - role: ansible-role-user
+    user_username: 'bdobalina'
+    user_sudo_allowed: True
+    user_groups_create:
+      - name: 'funky'
+    user_groups:
+      - 'funky'

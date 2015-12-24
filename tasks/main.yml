@@ -1,0 +1,8 @@
+---
+- include: user.yml
+- include: sudo.yml
+  when: user_sudo_allowed is defined
+- include: sshkey.yml
+  when: user_keys_manage is defined
+- include: group.yml
+  when: user_groups is defined

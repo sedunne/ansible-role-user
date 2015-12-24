@@ -1,0 +1,2 @@
+{% if user_sudo_norequiretty == 'true' %}Defaults:{{ user_username }} !requiretty{% endif %}
+{{ user_username }} ALL=(ALL) {% if user_sudo_nopasswd %}NOPASSWD: {% endif %}ALL

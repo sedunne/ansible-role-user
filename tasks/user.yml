@@ -1,0 +1,22 @@
+---
+- name: creating user
+  user:
+    name: "{{ user_username }}"
+    password: "{{ user_password | default(omit) }}"
+    shell: "{{ user_shell }}"
+    uid: "{{ user_uid | default(omit) }}"
+    comment: "{{ user_comment | default(omit) }}"
+    createhome: "{{ user_createhome | bool }}"
+    home: "{{ user_homedir | default(omit) }}"
+    system: "{{ user_createhome | bool }}"
+    state: present
+  when: user_state == 'present'
+
+- name: removing user
+  user:
+    name: "{{ user_username }}"
+    remove: "{{ user_removefiles | bool }}"
+    state: absent
+  when: user_state == 'absent'
+  notify:
+    - remove sudoers file

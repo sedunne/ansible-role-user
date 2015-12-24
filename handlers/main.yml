@@ -1,0 +1,6 @@
+---
+- name: removing sudoers file
+  file:
+    path: /etc/sudoers.d/{{ user_username }}
+    state: absent
+  when: user_sudo_allowed | bool
